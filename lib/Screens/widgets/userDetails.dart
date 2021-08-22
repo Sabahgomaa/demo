@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:httprequest/Screens/widgets/MapScreen.dart';
 import 'package:httprequest/Screens/widgets/myCard.dart';
 import 'package:httprequest/models/User.dart';
 import 'package:httprequest/utils.dart';
@@ -21,25 +22,36 @@ class _UserDetailsState extends State<UserDetails> {
           MyCard(
             content: "${widget.user.name}",
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           InkWell(
               onTap: () {
                 launchURL("mailto: ${widget.user.name}");
               },
               child: Text('Email: ${widget.user.email}')),
-              SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           InkWell(
               onTap: () {
                 launchURL("tel: ${widget.user.phone}");
               },
               child: Text('Phone: ${widget.user.phone}')),
           Divider(),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           InkWell(
               onTap: () {
                 launchURL("${widget.user.website}");
               },
               child: Text('Web:${widget.user.website}')),
+          MaterialButton(onPressed: () {
+            pushPage(context, MapSample(widget.user.address.geo));
+          },
+          child:Text("Map View") ,
+          )
         ]));
   }
 }
